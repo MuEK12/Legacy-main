@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CMapParentTxds>
+  <txdRelationships>
+    <Item>
+      <parent>oh_int_lspd_txd_editable</parent>
+      <child>oh_int_lspd_pt1_txd</child>
+    </Item>
+    <Item>
+      <parent>oh_int_lspd_pt1_txd</parent>
+      <child>oh_int_lspd_pt2_txd</child>
+    </Item>
+  </txdRelationships>
+</CMapParentTxds>
