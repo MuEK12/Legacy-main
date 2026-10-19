@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        font-size: 1rem;
+        --main: 102 173 67;
+        --mainText: 255 255 255;
+        --mainHover: 81 138 53;
+        --mainLight: 163 206 142;
+        --from: 7 18 2;
+        --to: 12 31 3;
+        --accept-letter: 220 255 233;
+        --accept-background: 63 164 102;
+        --accept-backgroundHover: 50 131 81;
+        --reject-letter: 255 232 232;
+        --reject-background: 173 68 67;
+        --reject-backgroundHover: 138 54 53;
+    }
+
+    @media screen and (max-width: 800px), screen and (max-height: 600px) { :root { font-size: 0.3rem; } }
+    @media screen and (min-width: 800px) and (min-height: 600px) { :root { font-size: 0.425rem; } }
+    @media screen and (min-width: 1000px) and (min-height: 700px) { :root { font-size: 0.55rem; } }
+    @media screen and (min-width: 1100px) and (min-height: 700px) { :root { font-size: 0.6rem; } }
+    @media screen and (min-width: 1300px) and (min-height: 700px) { :root { font-size: 0.7rem; } }
+    @media screen and (min-width: 1400px) and (min-height: 700px) { :root { font-size: 0.75rem; } }
+    @media screen and (min-width: 1600px) and (min-height: 800px) { :root { font-size: 0.8rem; } }
+    @media screen and (min-width: 1750px) and (min-height: 900px) { :root { font-size: 0.9rem; } }
+    @media screen and (min-width: 1850px) and (min-height: 1000px) { :root { font-size: 1rem; } }
+
+    * { user-select: none; letter-spacing: 0.025em; --tw-ring-inset: inset; }
+    * img { pointer-events: none; }
+    * input { user-select: text; }
+    html, body, #app { height: 100%; width: 100%; overflow: hidden; }
+    body { @apply text-white; font-weight: 300; }
+}
+
+@layer components {
+    .bg-wallpaper {
+        background-image: url("https://raw.githubusercontent.com/SouLucasHen/Versions/refs/heads/main/images/wallpaper.png");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .bg-default {
+        background-image: linear-gradient(to right, rgb(var(--from) / 0.9), rgb(var(--to) / 0) 30%);
+    }
+
+    .bg-default-inverted {
+        background-image: linear-gradient(to left, rgb(var(--from) / 0.9), rgb(var(--to) / 0) 30%);
+    }
+
+    .bg-default-full {
+        background-image: linear-gradient(to right, rgb(var(--from)), rgb(var(--to)));
+    }
+
+    .popup-overlay {
+        background-image: linear-gradient(to right, rgb(var(--from) / 0.8), rgb(var(--to) / 0.8));
+    }
+
+    .bg-shadow-circle {
+        background: radial-gradient(circle, rgb(var(--mainLight)), rgb(var(--mainLight) / 0) 75%);
+    }
+
+    .scrollbar-hide { scrollbar-width: none; }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+}
+
+/* BACKGROUND — decoração lateral (scribble + gradientes) */
+.bg-fade-enter-active,
+.bg-fade-leave-active {
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bg-fade-enter-from,
+.bg-fade-leave-to {
+    opacity: 0;
+}
+
+/* FADE — conteúdo principal (select ↔ creator ↔ spawn) */
+.fade-enter-active {
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-leave-active {
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+/* SLIDE */
+.slide-enter-active,
+.slide-leave-active {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.slide-enter-from {
+    opacity: 0;
+    transform: translateX(1rem);
+}
+.slide-leave-to {
+    opacity: 0;
+    transform: translateX(-1rem);
+}
+
+/* TOP-CENTER */
+.top-center-enter-active,
+.top-center-leave-active {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.top-center-enter-from,
+.top-center-leave-to {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+.top-center-leave-active {
+    position: absolute;
+}
+
+/* ZOOM */
+.zoom-enter-active,
+.zoom-leave-active {
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.zoom-enter-from,
+.zoom-leave-to {
+    transform: scale(0.95);
+    opacity: 0;
+}
+
+/* OVERLAY */
+.overlay-enter-active,
+.overlay-leave-active {
+    transition: opacity 0.2s ease;
+}
+.overlay-enter-from,
+.overlay-leave-to {
+    opacity: 0;
+}
+
+/* ANIMATIONS */
+@keyframes progress { 0% { width: 100%; } 100% { width: 0%; } }
+.animate-progress { animation: progress var(--timeout, 5s) linear; }
